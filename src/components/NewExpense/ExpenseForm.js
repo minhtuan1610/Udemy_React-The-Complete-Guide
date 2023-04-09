@@ -5,23 +5,48 @@ const ExpenseForm = () => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [enteredDate, setEnteredDate] = useState('');
+
+    // const [userInput, setUserInput] = useState({
+    //         enteredTitle: '',
+    //         enteredAmount: '',
+    //         enteredDate: '',
+    //     }
+    // );
     const titleChangeHandler = (event) => {
-        // console.log(event.target.value); // Can use console.log(event) to see the property of event. in this case we
-        // want to console log the value of event.
         setEnteredTitle(event.target.value);
+        // setUserInput((prevState) => {
+        //     return ({...prevState, enteredTitle: event.target.value});
+        // });
     };
 
     const amountChangeHandler = (event) => {
         setEnteredAmount(event.target.value);
+        // setUserInput({
+        //     ...userInput,
+        //     enteredAmount: event.target.value,
+        // });
     };
 
     const dateChangeHandler = (event) => {
         setEnteredDate(event.target.value);
+        // setUserInput({
+        //     ...userInput,
+        //     enteredDate: event.target.value,
+        // });
     };
 
+    const submitHandler = (event) => {
+        event.preventDefault();
+        const expenseData = {
+            title: enteredTitle,
+            amount: enteredAmount,
+            date: new Date(enteredDate),
+        };
+        console.log(expenseData);
+    };
 
     return (
-        <form>
+        <form onSubmit={submitHandler}>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Title</label>
